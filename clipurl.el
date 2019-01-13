@@ -118,8 +118,8 @@ the link text."
 
 This function returns a list of strings."
   (let ((selection (funcall interprogram-paste-function)))
-    (cl-case selection
-      (string (list selection))
+    (if (listp selection)
+        selection
       (list selection))))
 
 (defun clipurl--url-source-in-string-list ()
