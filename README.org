@@ -1,0 +1,28 @@
+* clipurl.el --- Work with URLs in the kill ring in Emacs
+This package provides convenient functions for working with URLs in
+the clipboard and the kill ring in Emacs. It lets you pick a URL in
+the kill ring as well as in the clipboard and run an action on the
+choice.
+** Prerequisites
+- Emacs 25.1
+- dash
+- s
+- ivy if you use =ivy-clipurl.el=
+** Usage
+=ivy-clipurl= is the primary entry point to the package. Pick a URL via the interface and press ~M-o~ to choose an action. The default action can be customized through =ivy-clipurl-default-action= variable.
+
+If you don't want to use =ivy-clipurl=, you can use the following commands
+to pick a URL:
+
+- =clipurl-insert-url-dwim= to insert a link/URL into the current buffer.
+- =clipurl-browse-url= to open a selected URL in a browser.
+- =clipurl-browse-url-other-window= to open a selected URL in other window.
+- =clipurl-browse-url-external-browser= to open a selected URL using an external browser.
+
+You can customize browser functions used by the commands in =ivy-clipurl= group.
+** To-Dos
+- [ ] Properly implement =clipurl-mode= which monitors the system clipboard to discover URLs
+- [ ] Add a command to import URLs from an entry in Org mode
+- [ ] Provide more verbose display in =ivy-clipurl=
+** License
+GPL v3
