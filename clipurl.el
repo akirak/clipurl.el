@@ -86,33 +86,6 @@ the link text."
   :group 'clipurl
   :type 'boolean)
 
-(defcustom clipurl-timer-interval 0.5
-  "Interval at which check for an update in the system clipboard."
-  :group 'clipurl
-  :type 'number)
-
-(defvar clipurl-timer nil "Timer used in `clipurl-mode'.")
-
-(define-minor-mode clipurl-mode
-  "Start/stop a global minor mode to track the clipboard history."
-  :global t
-  :require 'clipurl
-  :lighter "clipurl"
-  (cond
-   (clipurl-mode
-    (setq clipurl-timer (run-at-time nil clipurl-timer-interval
-                                     #'clipurl--check-selecion)))
-   (clipurl-timer
-    (cancel-timer clipurl-timer)
-    (setq clipurl-timer nil))))
-
-(defun clipurl--check-selecion (&rest _args)
-  "Check for an update in the selection."
-  (dolist (url (clipurl--urls-in-string-list
-                (gui-get-selection 'CLIPBOARD)))
-    (unless (member url kill-ring)
-      (kill-new url))))
-
 (defun clipurl--get-selection ()
   "Get selections.
 

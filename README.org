@@ -21,8 +21,21 @@ to pick a URL:
 
 You can customize browser functions used by the commands in =ivy-clipurl= group.
 ** To-Dos
-- [ ] Properly implement =clipurl-mode= which monitors the system clipboard to discover URLs
 - [ ] Add a command to import URLs from an entry in Org mode
 - [ ] Provide more verbose display in =ivy-clipurl=
+** License
+GPL v3
+* clipsave-mode
+=clipsave-mode= is a minimalistic clipboard manager which takes advantages of kill ring. It watches the system clipboard and saves every content to the kill ring.
+** Prerequisites
+Emacs 24.5
+** Installation
+Turn on =clipsave-mode=.
+** Configuration
+=interprogram-paste-function= must be properly configured to get the content of your system clipboard.
+
+Optionally, you can change the interval of clipboard monitoring by customizing =clipsave-timer-interval= variable.
+** Usage
+Clipboard contents are automatically saved into the kill ring. You can use ~C-y~ or ~M-y~ to retrieve an item.
 ** License
 GPL v3
