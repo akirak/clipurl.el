@@ -49,7 +49,7 @@
       (?  "#" (* (or wordchar (char "-"))))))
 
 (defcustom clipurl-browse-url-function
-  #'browse-url-defalt-browser
+  #'browse-url-default-browser
   "Function used to browse a URL."
   :group 'clipurl
   :type '(choice (const :tag "Default browser" browse-url-default-browser)
