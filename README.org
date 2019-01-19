@@ -1,4 +1,4 @@
-https://travis-ci.org/akirak/clipurl.el.svg?branch=master
+[[https://travis-ci.org/akirak/clipurl.el][https://travis-ci.org/akirak/clipurl.el.svg?branch=master]]
 * clipurl.el --- Work with URLs in the kill ring in Emacs
 This package provides convenient functions for working with URLs in
 the clipboard and the kill ring in Emacs. It lets you pick a URL in
