@@ -36,6 +36,13 @@
 (require 's)
 (require 'cl-lib)
 
+(autoload 'browse-url-default-browser "browse-url")
+(declare-function 'browse-url-default-browser "browse-url")
+(autoload 'org-web-tools-read-url-as-org "org-web-tools")
+(declare-function 'org-web-tools-read-url-as-org "org-web-tools")
+(autoload 'org-make-link-string "org")
+(declare-function 'org-make-link-string "org")
+
 (defgroup clipurl nil
   "Operations on URLs in the kill ring."
   :group 'convenience)
@@ -102,17 +109,17 @@ This function returns a list of strings."
 
 (defun clipurl--urls-in-string (string)
   "Extract URLs from STRING."
-  (thread-last string
-    (s-match-strings-all clipurl-url-regexp)
-    (-flatten-n 1)
-    (-map #'substring-no-properties)))
+  (->> string
+       (s-match-strings-all clipurl-url-regexp)
+       (-flatten-n 1)
+       (-map #'substring-no-properties)))
 
 (defun clipurl--urls-in-string-list (string-list)
   "Extract URLs from STRING-LIST."
-  (remove-duplicates
-   (thread-last string-list
-     (-map #'clipurl--urls-in-string)
-     (-flatten-n 1))
+  (cl-remove-duplicates
+   (->> string-list
+        (-map #'clipurl--urls-in-string)
+        (-flatten-n 1))
    :test #'string-equal))
 
 (defun clipurl--urls-in-kill-ring ()
