@@ -36,6 +36,13 @@
 (require 's)
 (require 'cl-lib)
 
+(autoload 'browse-url-default-browser "browse-url")
+(declare-function 'browse-url-default-browser "browse-url")
+(autoload 'org-web-tools-read-url-as-org "org-web-tools")
+(declare-function 'org-web-tools-read-url-as-org "org-web-tools")
+(autoload 'org-make-link-string "org")
+(declare-function 'org-make-link-string "org")
+
 (defgroup clipurl nil
   "Operations on URLs in the kill ring."
   :group 'convenience)
@@ -80,7 +87,7 @@
   "Use `org-web-tools-insert-link-for-url' to insert a URL.
 
 If this variable is non-nil, org-web-tools is used to produce a
-link in some modes like `org-mode' and `markdown-mode'. That is,
+link in some modes like `org-mode' and `markdown-mode'.  That is,
 a title is fetched from an actual web page of the URL and used as
 the link text."
   :group 'clipurl
@@ -102,17 +109,17 @@ This function returns a list of strings."
 
 (defun clipurl--urls-in-string (string)
   "Extract URLs from STRING."
-  (thread-last string
-    (s-match-strings-all clipurl-url-regexp)
-    (-flatten-n 1)
-    (-map #'substring-no-properties)))
+  (->> string
+       (s-match-strings-all clipurl-url-regexp)
+       (-flatten-n 1)
+       (-map #'substring-no-properties)))
 
 (defun clipurl--urls-in-string-list (string-list)
   "Extract URLs from STRING-LIST."
-  (remove-duplicates
-   (thread-last string-list
-     (-map #'clipurl--urls-in-string)
-     (-flatten-n 1))
+  (cl-remove-duplicates
+   (->> string-list
+        (-map #'clipurl--urls-in-string)
+        (-flatten-n 1))
    :test #'string-equal))
 
 (defun clipurl--urls-in-kill-ring ()
@@ -124,7 +131,7 @@ This function returns a list of strings."
   (clipurl--urls-in-kill-ring))
 
 (defun clipurl-complete-url (prompt)
-  "Complete a URL with contents in the kill ring."
+  "Complete a URL with contents in the kill ring (with PROMPT)."
   (completing-read prompt (clipurl--urls-in-kill-ring)))
 
 (defmacro clipurl--run-in-other-window (&rest progn)
@@ -185,7 +192,7 @@ function inserts a link to the URL rather than the URL itself.
 The link title is fetched by `org-web-tools' package if and only
 if it is available and
 `clipurl-use-org-web-tools-insert-link-for-url' is set to
-non-nil.  Otherwise, this function inserts the URL itself."  
+non-nil.  Otherwise, this function inserts the URL itself."
   (interactive
    (list (clipurl-complete-url "Insert a link or URL: ")))
   (cond
@@ -202,7 +209,7 @@ non-nil.  Otherwise, this function inserts the URL itself."
                              (if (fboundp 'org-web-tools--html-title)
                                  (ignore-errors
                                    (org-web-tools--html-title url))
-                               (error "org-web-tools--html-title is undefined")))
+                               (error "Undefined function: org-web-tools--html-title")))
                         (read-string (format "Title for the link to %s: " url)))
                     url)))
    (t (insert url))))
