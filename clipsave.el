@@ -42,6 +42,7 @@
 
 (defvar clipsave--orig-save-interprogram-paste-before-kill)
 
+;;;###autoload
 (define-minor-mode clipsave-mode
   "Minimalistic clipboard history.
 
