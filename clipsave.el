@@ -67,9 +67,10 @@ ring."
 (defun clipsave--check (&rest _args)
   "Check for an update in the selection."
   (let* ((sel (funcall interprogram-paste-function)))
-    (when (and sel
-               (not (equal (substring-no-properties sel)
-                           (substring-no-properties (car kill-ring)))))
+    (when (or (not kill-ring)
+              (and sel
+                   (not (equal (substring-no-properties sel)
+                               (car kill-ring)))))
       (kill-new sel))))
 
 (provide 'clipsave)
