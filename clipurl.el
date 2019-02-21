@@ -51,7 +51,7 @@
   (rx "http" (?  "s") "://"
       (* (+ (or (char "-") wordchar)) ".")
       (or "localhost" (repeat 2 6 lower))
-      (* "/" (* (or wordchar (char "-=.%"))))
+      (* "/" (* (or wordchar (char "-=.%_"))))
       (?  "?" (* (or wordchar (char "-=&%"))))
       (?  "#" (* (or wordchar (char "-"))))))
 
