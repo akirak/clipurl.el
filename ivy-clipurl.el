@@ -43,6 +43,7 @@
   "Default action of `ivy-clipurl'."
   :group 'ivy-clipurl
   :type '(choice (const :tag "Save into the kill ring" kill-new)
+                 (const :tag "Insert (dwim)" clipurl-insert-url-dwim)
                  (const :tag "Browse the URL" clipurl-browse-url)
                  (const :tag "Browse the URL in other window" clipurl-browse-url-other-window)
                  (const :tag "Browse the URL externally" clipurl-browse-url-external-browser)
