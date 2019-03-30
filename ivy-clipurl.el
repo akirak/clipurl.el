@@ -48,11 +48,18 @@
                  (const :tag "Browse the URL externally" clipurl-browse-url-external-browser)
                  function))
 
+(defcustom ivy-clipurl-prompt "URLs: "
+  "Prompt of `ivy-clipurl' command.
+
+This is intended for temporarily overriding the prompt."
+  :group 'ivy-clipurl
+  :type 'string)
+
 ;;;###autoload
 (defun ivy-clipurl ()
   "Pick a URL in the clipboard and the kill ring."
   (interactive)
-  (ivy-read "URLs: " #'clipurl--complete-url-in-kill-ring
+  (ivy-read ivy-clipurl-prompt #'clipurl--complete-url-in-kill-ring
             :caller 'ivy-clipurl
             :action ivy-clipurl-default-action))
 
