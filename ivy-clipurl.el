@@ -53,6 +53,7 @@
   "Pick a URL in the clipboard and the kill ring."
   (interactive)
   (ivy-read "URLs: " #'clipurl--complete-url-in-kill-ring
+            :caller 'ivy-clipurl
             :action ivy-clipurl-default-action))
 
 (ivy-add-actions 'ivy-clipurl
