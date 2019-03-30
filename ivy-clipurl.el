@@ -3,7 +3,7 @@
 ;; Copyright (C) 2019 Akira Komamura
 
 ;; Author: Akira Komamura <akira.komamura@gmail.com>
-;; Version: 0.1
+;; Version: 0.1.1
 ;; Package-Requires: ((emacs "25.1") (ivy "0.10"))
 ;; Keywords: convenience
 ;; URL: https://github.com/akirak/clipurl.el
