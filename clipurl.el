@@ -47,31 +47,34 @@
   "Operations on URLs in the kill ring."
   :group 'convenience)
 
-(defconst clipurl-url--xalpha
-  (let* ((safe "$-_@.&+-")
-         (extra "!*\"'(),")
-         (escape '(and "%" (char hex) (char hex))))
-    `(or (char alpha digit ,safe ,extra) ,escape)))
+(eval-when-compile
+  (defconst clipurl-url--xalpha
+    (let* ((safe "$-_@.&+-")
+           (extra "!*\"'(),")
+           (escape '(and "%" (char hex) (char hex))))
+      `(or (char alpha digit ,safe ,extra) ,escape))))
 
-(defconst clipurl-url--host-pattern
-  (let* ((xalpha clipurl-url--xalpha)
-         (ialpha `(and (char alpha) (* ,xalpha)))
-         (hostname `(and ,ialpha (* (and "." ,ialpha))))
-         (hostnumber '(and (+ (char digit))
-                           (repeat 3 (and "." (+ (char digit)))))))
-    `(or ,hostname ,hostnumber)))
+(eval-when-compile
+  (defconst clipurl-url--host-pattern
+    (let* ((xalpha clipurl-url--xalpha)
+           (ialpha `(and (char alpha) (* ,xalpha)))
+           (hostname `(and ,ialpha (* (and "." ,ialpha))))
+           (hostnumber '(and (+ (char digit))
+                             (repeat 3 (and "." (+ (char digit)))))))
+      `(or ,hostname ,hostnumber))))
 
-(defconst clipurl-url-regexp
-  (rx "http" (?  "s")
-      "://"
-      (eval clipurl-url--host-pattern)
-      (?  ":" (+ (char digit)))
-      (?  (or "/" (and (+ "/" (+ (eval clipurl-url--xalpha)))
-                       (?  "/"))))
-      (?  "?" (and (+ (eval clipurl-url--xalpha))
-                   (* "+" (+ (eval clipurl-url--xalpha)))))
-      (?  "#" (+ (or (+ (eval clipurl-url--xalpha))
-                     (char "/?"))))))
+(eval-when-compile
+  (defconst clipurl-url-regexp
+    (rx "http" (?  "s")
+        "://"
+        (eval clipurl-url--host-pattern)
+        (?  ":" (+ (char digit)))
+        (?  (or "/" (and (+ "/" (+ (eval clipurl-url--xalpha)))
+                         (?  "/"))))
+        (?  "?" (and (+ (eval clipurl-url--xalpha))
+                     (* "+" (+ (eval clipurl-url--xalpha)))))
+        (?  "#" (+ (or (+ (eval clipurl-url--xalpha))
+                       (char "/?")))))))
 
 (defcustom clipurl-browse-url-function
   #'browse-url-default-browser
