@@ -1,5 +1,5 @@
 EMAKE_SHA1            := 9095599536e5b3ad8c34a3dd3362dbb92ebf701f
-PACKAGE_LISP          := clipsave.el clipurl.el ivy-clipurl.el
+PACKAGE_LISP          := clipsave.el clipurl-url.el clipurl.el ivy-clipurl.el
 
 PACKAGE_ARCHIVES      := gnu melpa
 #PACKAGE_TESTS         := test-sample.el # normally, EMake would discover these in the test/ directory
@@ -46,6 +46,7 @@ install-emacs: emacs-travis.mk	## build and install a fresh emacs
 
 install: .elpa
 	PACKAGE_FILE=clipsave.el $(EMAKE) install
+	PACKAGE_FILE=clipurl-url.el $(EMAKE) install
 	PACKAGE_FILE=clipurl.el $(EMAKE) install
 	PACKAGE_FILE=ivy-clipurl.el $(EMAKE) install
 lint: install

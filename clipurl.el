@@ -35,6 +35,7 @@
 (require 'dash)
 (require 's)
 (require 'cl-lib)
+(require 'clipurl-url)
 
 (autoload 'browse-url-default-browser "browse-url")
 (declare-function 'browse-url-default-browser "browse-url")
@@ -46,14 +47,6 @@
 (defgroup clipurl nil
   "Operations on URLs in the kill ring."
   :group 'convenience)
-
-(defconst clipurl-url-regexp
-  (rx "http" (?  "s") "://"
-      (* (+ (or (char "-") wordchar)) ".")
-      (or "localhost" (repeat 2 6 lower))
-      (* "/" (* (or wordchar (char "-=.%_@"))))
-      (?  "?" (* (or wordchar (char "-=&%"))))
-      (?  "#" (* (or wordchar (char "-"))))))
 
 (defcustom clipurl-browse-url-function
   #'browse-url-default-browser
