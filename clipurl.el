@@ -47,23 +47,21 @@
   "Operations on URLs in the kill ring."
   :group 'convenience)
 
-(eval-when-compile
+(eval-and-compile
   (defconst clipurl-url--xalpha
     (let* ((safe "$-_@.&+-")
            (extra "!*\"'(),")
            (escape '(and "%" (char hex) (char hex))))
-      `(or (char alpha digit ,safe ,extra) ,escape))))
+      `(or (char alpha digit ,safe ,extra) ,escape)))
 
-(eval-when-compile
   (defconst clipurl-url--host-pattern
     (let* ((xalpha clipurl-url--xalpha)
            (ialpha `(and (char alpha) (* ,xalpha)))
            (hostname `(and ,ialpha (* (and "." ,ialpha))))
            (hostnumber '(and (+ (char digit))
                              (repeat 3 (and "." (+ (char digit)))))))
-      `(or ,hostname ,hostnumber))))
+      `(or ,hostname ,hostnumber)))
 
-(eval-when-compile
   (defconst clipurl-url-regexp
     (rx "http" (?  "s")
         "://"
