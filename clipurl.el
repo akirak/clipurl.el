@@ -50,7 +50,11 @@
 (eval-and-compile
   (defconst clipurl-url--xalpha
     (let* ((safe "$-_@.&+-")
-           (extra "!*\"'(),")
+           (extra "!*(),")
+           ;; I don't think people would want URLs containing
+           ;; double/single quotes, but the spec contains them.
+           ;;
+           ;; (extra "!*\"'(),")
            (escape '(and "%" (char hex) (char hex))))
       `(or (char alpha digit ,safe ,extra) ,escape)))
 
