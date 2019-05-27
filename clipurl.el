@@ -36,9 +36,11 @@
 (require 's)
 (require 'cl-lib)
 
+(autoload 'browse-url-default-browser "browse-url")
+(autoload 'org-link-make-string "ol")
 (declare-function 'browse-url-default-browser "browse-url")
 (declare-function 'org-web-tools-read-url-as-org "org-web-tools")
-(declare-function 'org-make-link-string "org")
+(declare-function 'org-link-make-string "ol")
 
 (defgroup clipurl nil
   "Operations on URLs in the kill ring."
@@ -221,7 +223,7 @@ non-nil.  Otherwise, this function inserts the URL itself."
              clipurl-use-org-web-tools-insert-link-for-url)
         (org-web-tools-insert-link-for-url url)
       (let ((title (read-string (format "Title for the link to %s: " url))))
-        (org-make-link-string url title))))
+        (org-link-make-string url title))))
    ((derived-mode-p 'markdown-mode)
     (insert (format "[%s](%s)"
                     (or (and (fboundp 'org-web-tools-insert-link-for-url)
