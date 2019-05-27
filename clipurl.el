@@ -36,11 +36,8 @@
 (require 's)
 (require 'cl-lib)
 
-(autoload 'browse-url-default-browser "browse-url")
 (declare-function 'browse-url-default-browser "browse-url")
-(autoload 'org-web-tools-read-url-as-org "org-web-tools")
 (declare-function 'org-web-tools-read-url-as-org "org-web-tools")
-(autoload 'org-make-link-string "org")
 (declare-function 'org-make-link-string "org")
 
 (defgroup clipurl nil
