@@ -42,6 +42,8 @@
 
 (defvar clipsave--orig-save-interprogram-paste-before-kill)
 
+(defvar clipsave--last-value nil)
+
 ;;;###autoload
 (define-minor-mode clipsave-mode
   "Minimalistic clipboard history.
@@ -68,10 +70,11 @@ ring."
   "Check for an update in the selection."
   (let* ((sel (funcall interprogram-paste-function)))
     (when (and sel
-               (or (not kill-ring)
+               (or (not clipsave--last-value)
                    (not (equal (substring-no-properties sel)
-                               (car kill-ring)))))
-      (kill-new sel))))
+                               clipsave--last-value))))
+      (kill-new sel)
+      (setq clipsave--last-value sel))))
 
 (provide 'clipsave)
 ;;; clipsave.el ends here
