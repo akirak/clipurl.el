@@ -42,7 +42,7 @@
 
 (defvar clipsave--orig-save-interprogram-paste-before-kill)
 
-(defvar clipsave--last-value nil)
+(defvar clipsave--last-value-hash nil)
 
 ;;;###autoload
 (define-minor-mode clipsave-mode
@@ -68,13 +68,12 @@ ring."
 
 (defun clipsave--check (&rest _args)
   "Check for an update in the selection."
-  (let* ((sel (funcall interprogram-paste-function)))
-    (when (and sel
-               (or (not clipsave--last-value)
-                   (not (equal (substring-no-properties sel)
-                               clipsave--last-value))))
+  (let* ((sel (funcall interprogram-paste-function))
+         (hash (and sel (sxhash-equal (substring-no-properties sel)))))
+    (when (and hash (not (eq clipsave--last-value-hash hash)))
+      (message "%d" hash)
       (kill-new sel)
-      (setq clipsave--last-value sel))))
+      (setq clipsave--last-value-hash hash))))
 
 (provide 'clipsave)
 ;;; clipsave.el ends here
