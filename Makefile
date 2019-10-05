@@ -4,7 +4,7 @@ ELPA_DEPENDENCIES=dash package-lint ivy org-web-tools let-alist
 
 # List of package archives to download above dependencies
 # from. Available archives are: gnu, melpa, melpa-stable and org:
-ELPA_ARCHIVES=melpa
+ELPA_ARCHIVES=gnu melpa
 
 # List of ERT test files:
 TEST_ERT_FILES=$(wildcard test/*.el)
