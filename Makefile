@@ -1,6 +1,6 @@
 # Space-separated list of the dependencies of your project (include package-lint if
 # you want makel to use this linting tool):
-ELPA_DEPENDENCIES=dash package-lint ivy org-web-tools
+ELPA_DEPENDENCIES=dash package-lint ivy org-web-tools let-alist
 
 # List of package archives to download above dependencies
 # from. Available archives are: gnu, melpa, melpa-stable and org:
