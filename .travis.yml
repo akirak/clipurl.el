@@ -27,7 +27,7 @@ install:
 - $EMACSBIN --version
 # https://elpa.gnu.org/packages/gnu-elpa-keyring-update.html
 - gpg --version
-- gpg --homedir ~/.emacs.d/elpa/gnupg --receive-keys 066DAFCB81E42C40
+- gpg --homedir ~/.emacs.d/elpa/gnupg --recv-keys 066DAFCB81E42C40
 - make makel.mk
 - make makel-version
 - make install-elpa-dependencies
