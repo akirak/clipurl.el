@@ -35,7 +35,7 @@ install:
 # https://www.reddit.com/r/emacs/comments/ddjo76/emacs_gpg_key_issues/f2lztn1/
 # Thanks to /u/npostavs and /u/AFewSentientNeurons
 - curl -OL https://elpa.gnu.org/packages/gnu-elpa-keyring-update-2019.3.tar
-- $EMACSBIN --funcall package-refresh-contents --eval '(package-install-file "gnu-elpa-keyring-update-2019.3.tar")'
+- $EMACSBIN --batch -Q --funcall package-refresh-contents --eval '(package-install-file "gnu-elpa-keyring-update-2019.3.tar")'
 - make makel.mk
 - make makel-version
 - make install-elpa-dependencies
