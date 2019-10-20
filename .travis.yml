@@ -23,6 +23,7 @@ before_install:
 # information to have.  See the example for how you *should* be
 # doing all this!
 - bash -ex build-emacs
+- sudo apt install gnupg2
 install:
 - $EMACSBIN --version
 # Work around the Emacs GPG key issue
@@ -30,8 +31,7 @@ install:
 # Thanks to /u/npostavs and /u/AFewSentientNeurons
 - curl -OL https://elpa.gnu.org/packages/gnu-elpa-keyring-update-2019.3.tar
 - $EMACSBIN --batch --eval '(package-install-file "gnu-elpa-keyring-update-2019.3.tar")'
-- gpg --version
-- gpg --homedir ~/.emacs.d/elpa/gnupg --recv-keys 066DAFCB81E42C40
+- gpg2 --homedir ~/.emacs.d/elpa/gnupg --receive-keys 066DAFCB81E42C40
 - make makel.mk
 - make makel-version
 - make install-elpa-dependencies
