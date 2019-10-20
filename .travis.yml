@@ -25,7 +25,11 @@ before_install:
 - bash -ex build-emacs
 install:
 - $EMACSBIN --version
-# https://elpa.gnu.org/packages/gnu-elpa-keyring-update.html
+# Work around the Emacs GPG key issue
+# https://www.reddit.com/r/emacs/comments/ddjo76/emacs_gpg_key_issues/f2lztn1/
+# Thanks to /u/npostavs and /u/AFewSentientNeurons
+- curl -OL https://elpa.gnu.org/packages/gnu-elpa-keyring-update-2019.3.tar
+- $EMACSBIN --batch --eval '(package-install-file "gnu-elpa-keyring-update-2019.3.tar")'
 - gpg --version
 - gpg --homedir ~/.emacs.d/elpa/gnupg --recv-keys 066DAFCB81E42C40
 - make makel.mk
