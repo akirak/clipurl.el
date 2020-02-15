@@ -56,7 +56,7 @@
            ;;
            ;; (extra "!*\"'(),")
            (escape '(and "%" (char hex) (char hex))))
-      `(or (char alpha digit ,safe ,extra) ,escape)))
+      `(or ,escape (char alpha digit ,safe ,extra))))
 
   (defconst clipurl-url--host-pattern
     (let* ((xalpha clipurl-url--xalpha)
@@ -71,8 +71,9 @@
         "://"
         (eval clipurl-url--host-pattern)
         (?  ":" (+ (char digit)))
-        (?  (or "/" (and (+ "/" (+ (eval clipurl-url--xalpha)))
-                         (?  "/"))))
+        (?  (or (and (+ "/" (+ (eval clipurl-url--xalpha)))
+                     (?  "/"))
+                "/"))
         (?  "?" (and (+ (eval clipurl-url--xalpha))
                      (* "+" (+ (eval clipurl-url--xalpha)))))
         (?  "#" (+ (or (+ (eval clipurl-url--xalpha))
