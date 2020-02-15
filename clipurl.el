@@ -48,7 +48,7 @@
 
 (eval-and-compile
   (defconst clipurl-url--xalpha
-    ;; TODO: Add thorought tests and fix this pattern
+    ;; TODO: Add thorough tests and fix this pattern
     (let* ((safe "-$=_@.&+")
            (extra "!*(),")
            ;; I don't think people would want URLs containing
