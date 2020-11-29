@@ -4,7 +4,7 @@
 
 ;; Author: Akira Komamura <akira.komamura@gmail.com>
 ;; Version: 0.1
-;; Package-Requires: ((emacs "25.1") (dash "2.12") (s "1.12"))
+;; Package-Requires: ((emacs "25.1") (dash "2.12") (s "1.12") (org "9.3"))
 ;; Keywords: convenience
 ;; URL: https://github.com/akirak/clipurl.el
 
@@ -38,9 +38,9 @@
 
 (autoload 'browse-url-default-browser "browse-url")
 (autoload 'org-link-make-string "ol")
-(declare-function 'browse-url-default-browser "browse-url")
-(declare-function 'org-web-tools-read-url-as-org "org-web-tools")
-(declare-function 'org-link-make-string "ol")
+(declare-function browse-url-default-browser "browse-url")
+(declare-function org-web-tools-read-url-as-org "ext:org-web-tools")
+(declare-function org-link-make-string "ol")
 
 (defgroup clipurl nil
   "Operations on URLs in the kill ring."
