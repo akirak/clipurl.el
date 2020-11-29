@@ -50,7 +50,7 @@
   (defconst clipurl-url--xalpha
     ;; TODO: Add thorough tests and fix this pattern
     (let* ((safe "-$=_@.&+")
-           (extra "!*(),")
+           (extra "!*(),~")
            ;; I don't think people would want URLs containing
            ;; double/single quotes, but the spec contains them.
            ;;
