@@ -4,7 +4,7 @@
 
 ;; Author: Akira Komamura <akira.komamura@gmail.com>
 ;; Version: 0.1.1
-;; Package-Requires: ((emacs "25.1") (ivy "0.10"))
+;; Package-Requires: ((emacs "25.1") (ivy "0.10") (clipurl "0.1"))
 ;; Keywords: convenience
 ;; URL: https://github.com/akirak/clipurl.el
 

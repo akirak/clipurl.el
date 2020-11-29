@@ -1,0 +1,2 @@
+(clipurl :fetcher github :repo "akirak/clipurl.el"
+         :files (:defaults (:exclude "clipsave.el" "ivy-clipurl.el")))

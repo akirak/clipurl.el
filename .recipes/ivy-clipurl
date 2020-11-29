@@ -1,0 +1,2 @@
+(ivy-clipurl :fetcher github :repo "akirak/clipurl.el"
+             :files ("ivy-clipurl.el"))
