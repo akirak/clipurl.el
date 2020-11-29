@@ -1,5 +1,10 @@
-[[https://travis-ci.org/akirak/clipurl.el][https://travis-ci.org/akirak/clipurl.el.svg?branch=master]]
 * clipurl.el --- Work with URLs in the kill ring in Emacs
+#+begin_html
+<a href="https://github.com/akirak/clipurl.el/actions?query=workflow%3ACI">
+<img src="https://github.com/akirak/clipurl.el/workflows/CI/badge.svg" alt="CI status">
+</a>
+#+end_html
+
 This package provides convenient functions for working with URLs in
 the clipboard and the kill ring in Emacs. It lets you pick a URL in
 the kill ring as well as in the clipboard and run an action on the
