@@ -1,0 +1,2 @@
+(clipsave :fetcher github :repo "akirak/clipurl.el"
+          :files ("clipsave.el"))
