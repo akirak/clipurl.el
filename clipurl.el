@@ -156,7 +156,14 @@ This function returns a list of strings."
 
 (defun clipurl-complete-url (prompt)
   "Complete a URL with contents in the kill ring (with PROMPT)."
-  (completing-read prompt (clipurl--urls-in-kill-ring)))
+  (completing-read prompt (clipurl-completions (clipurl--urls-in-kill-ring))))
+
+(defun clipurl-completions (urls)
+  "Return a completion table for URLS."
+  (lambda (string pred action)
+    (if (eq action 'metadata)
+        '(metadata . ((category . url)))
+      (complete-with-action action urls string pred))))
 
 (defmacro clipurl--run-in-other-window (&rest progn)
   "Macro to run PROGN in other window."
