@@ -5,6 +5,8 @@
 </a>
 #+end_html
 
+*Deprecation notice: I won't maintain this library any more. An alternative is [[https://github.com/akirak/trivial-elisps/blob/master/akirak-url.el][here]] (it is not properly packaged yet).*
+
 This package provides convenient functions for working with URLs in
 the clipboard and the kill ring in Emacs. It lets you pick a URL in
 the kill ring as well as in the clipboard and run an action on the
